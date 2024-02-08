@@ -6,5 +6,9 @@
 
 
 {% block content %}
-    <p>dsadsadasdas</p>
+    {%for book in books%}
+        <h2>{{ book.title }}</h2>
+        <img src="{{ book.cover.url }}" alt="{{ book.title }} - Cover" width="200" height="300"/>
+        <p>{{ book.rating }}/10</p>
+    {% endfor %}
 {% endblock %}
