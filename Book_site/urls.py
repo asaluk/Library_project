@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name="index"),
-    path('book/<slug:slug>', views.BookDetailView.as_view(), name="book-detail")
+    path('', views.MainPageView.as_view(), name="main-page"),
+    path('book/<slug:slug>', views.BookDetailView.as_view(), name="book-detail"),
+    path('searched', views.SearchedView.as_view(), name="searched"),
 ]

@@ -29,7 +29,7 @@ class Book(models.Model):
     series = models.ForeignKey(Series, on_delete=models.CASCADE, blank=True, null=True, related_name="books")
 
     def __str__(self):
-        return f"{self.title} {self.author} {self.rating}"
+        return f"{self.title} {self.author}"
     
     def get_absolute_url(self):
         return reverse("book-detail", args=[self.slug])

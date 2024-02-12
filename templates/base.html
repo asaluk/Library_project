@@ -1,14 +1,29 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static "main.css" %}" />
+    {% block css_files %}{% endblock %}
 </head>
 
 
 <body>
+
+    <div class="topnav">
+        <a href="{% url "main-page" %}">Menu</a>
+        <a href="">Your Shelf</a>
+        <form method="POST" action="{% url "searched" %}">
+            {% csrf_token %}
+            <input type="search" placeholder="Search..." name="search">
+        </form>
+    </div>
+
 {% block content %}
 {% endblock %}
+
 </body>
 </html>

@@ -1,0 +1,13 @@
+{% extends "base.html" %} 
+
+
+
+{% block title %}Library Project{% endblock%}
+
+
+{% block content %}
+    {%for book in books%}
+        <a href="{{ book.get_absolute_url }}"><h2>{{ book.title }}</h2></a>
+        <a href="{{ book.get_absolute_url }}"><img src="{{ book.cover.url }}" alt="{{ book.title }} - Cover" width="200" height="300"/></a>
+    {% endfor %}
+{% endblock %}

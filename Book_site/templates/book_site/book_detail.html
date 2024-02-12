@@ -1,0 +1,18 @@
+{% extends "base.html" %} 
+
+
+{% block title %}
+{{ book.title }}
+{% endblock %}
+
+{% block content%}
+
+    <h1>{{ book.title }}</h1>
+    {% if book.series != null %}
+        <p>Series name: {{ book.series }}, tome: {{book.tome }}</p>
+    {% endif %}
+    <img src="{{ book.cover.url }}" alt="{{ book.title }} - Cover" width="200" height="300"/>
+    <p>{{ book.rating }}/10</p>
+    <button action="" type="">Add to Your shelf</button>
+
+{% endblock %}
