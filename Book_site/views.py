@@ -25,10 +25,10 @@ class SearchedView(View):
 
     def post(self, request):
         searched = request.POST["search"]
-        searched_books = Book.objects.filter(Q(author__first_name__contains=searched) | Q(author__last_name__contains=searched) 
+        searched_books = Book.objects.filter(Q(author__first_name__contains=searched) | Q(author__last_name__contains=searched)
                                              | Q(title__contains=searched) | Q(series__series__contains=searched))
         context = {
-            "searched" : searched,
-            "searched_books" : searched_books,
+            "searched": searched,
+            "searched_books": searched_books,
         }
         return render(request, "book_site/searched.html", context)

@@ -10,12 +10,16 @@
     <center>
         {% if searched %}
             <h1>You searched for: {{ searched }}</h1>
-            <h2>Your results:</h2>
             <br/>
             <ul>
             {% for books in searched_books %}
-                <a href="{{ books.get_absolute_url }}"><h2>{{ books.title }}</h2></a>
-                <a href="{{ books.get_absolute_url }}"><img src="{{ books.cover.url }}"></a>
+                {% if books.tome != Null %}
+                    <a href="{{ books.get_absolute_url }}"><h2>{{ books.title }}, tome: {{books.tome}}</h2></a>
+                    <a href="{{ books.get_absolute_url }}"><img src="{{ books.cover.url }}"></a>
+                {% else%}
+                    <a href="{{ books.get_absolute_url }}"><h2>{{ books.title }}</h2></a>
+                    <a href="{{ books.get_absolute_url }}"><img src="{{ books.cover.url }}"></a>
+                {% endif %}
             {% endfor %}
             </ul>
         {% else %}

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="{% static "main.css" %}" />
+    <link rel="stylesheet" href="{% static "topnav.css" %}" />
     {% block css_files %}{% endblock %}
 </head>
 
@@ -15,6 +15,7 @@
 
     <div class="topnav">
         <a href="{% url "main-page" %}">Menu</a>
+        <a href="">Add your book</a>
         <a href="">Your Shelf</a>
         <form method="POST" action="{% url "searched" %}">
             {% csrf_token %}
