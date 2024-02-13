@@ -8,10 +8,13 @@
 
     {% if searched %}
         <h1>You searched for: {{ searched }}</h1>
+        <h2>Your results:</h2>
         <br/>
+        <ul>
         {% for books in searched_books %}
-            {{ books }}
+            <a href="{{ books.get_absolute_url }}"><li>{{ books }}</li></a>
         {% endfor %}
+        </ul>
     {% else %}
         <h1>You forgot to search for a book...</h1>
     {% endif %}

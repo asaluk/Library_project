@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from .models import Book
 from django.views import View
+from django.db.models import Q
 # Create your views here.
 
 
@@ -24,7 +25,8 @@ class SearchedView(View):
 
     def post(self, request):
         searched = request.POST["search"]
-        searched_books = Book.objects.filter(title__contains=searched) or Book.objects.filter(__contains=searched)
+        searched_books = Book.objects.filter(Q(author__first_name__contains=searched) | Q(author__last_name__contains=searched) 
+                                             | Q(title__contains=searched) | Q(series__series__contains=searched))
         context = {
             "searched" : searched,
             "searched_books" : searched_books,

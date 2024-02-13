@@ -17,6 +17,9 @@ class Series(models.Model):
 
     def __str__(self):
         return self.series
+    
+    class Meta:
+        verbose_name_plural = "Series"
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
@@ -33,4 +36,5 @@ class Book(models.Model):
     
     def get_absolute_url(self):
         return reverse("book-detail", args=[self.slug])
+    
     
