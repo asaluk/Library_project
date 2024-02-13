@@ -1,22 +1,25 @@
 {% extends "base.html"%}
 
+
+
 {% block title %}
     Searched...
 {% endblock %}
 
 {% block content %}
-
-    {% if searched %}
-        <h1>You searched for: {{ searched }}</h1>
-        <h2>Your results:</h2>
-        <br/>
-        <ul>
-        {% for books in searched_books %}
-            <a href="{{ books.get_absolute_url }}"><li>{{ books }}</li></a>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <h1>You forgot to search for a book...</h1>
-    {% endif %}
-
+    <center>
+        {% if searched %}
+            <h1>You searched for: {{ searched }}</h1>
+            <h2>Your results:</h2>
+            <br/>
+            <ul>
+            {% for books in searched_books %}
+                <a href="{{ books.get_absolute_url }}"><h2>{{ books.title }}</h2></a>
+                <a href="{{ books.get_absolute_url }}"><img src="{{ books.cover.url }}"></a>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <h1>You forgot to search for a book...</h1>
+        {% endif %}
+    </center>
 {% endblock %}
