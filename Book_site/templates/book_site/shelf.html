@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Your Shelf
+{% endblock %}
+
+{% block content %}
+    
+    <div>
+        {% if not has_books %}
+            You didn't save any books.
+        {% endif %}
+        <ul>
+            {% for book in books %}
+                <a href="{{ book.get_absolute_url }}"><h2>{{ book.title }}</h2></a>
+                <a href="{{ book.get_absolute_url }}"><img src="{{ book.cover.url }}"
+                    alt="{{ book.title }} - Cover" width="200" height="300"/></a>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

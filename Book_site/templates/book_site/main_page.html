@@ -13,9 +13,11 @@
 {% block content %}
     <div class="grid-container">
         {%for book in books%}
-                <div class="grid-item"><a href="{{ book.get_absolute_url }}"><h2>{{ book.title }}</h2></a>
-                <a href="{{ book.get_absolute_url }}"><img src="{{ book.cover.url }}"
-                    alt="{{ book.title }} - Cover" width="200" height="300"/></a></div>
+                <div class="grid-item">
+                    <a href="{{ book.get_absolute_url }}"><h2>{{ book.title }}</h2></a>
+                    <a href="{{ book.get_absolute_url }}"><img src="{{ book.cover.url }}"
+                    alt="{{ book.title }} - Cover" width="200" height="300"/></a>
+                </div>
         {% endfor %}
     </div>
 {% endblock %}

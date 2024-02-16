@@ -14,7 +14,13 @@
         {% endif %}
         <img src="{{ book.cover.url }}" alt="{{ book.title }} - Cover" width="200" height="300"/>
         <p>{{ book.rating }}/10</p>
-        <button action="" type="">Add to Your shelf</button>
+
+        <form method="POST" action="{% url "shelf" %}">
+            {% csrf_token %}
+            <input type="hidden" name="book_id" value="{{ book.id }}">
+            <button>Add to Your shelf</button>
+        </form>
+       
     </center>
 
 {% endblock %}
