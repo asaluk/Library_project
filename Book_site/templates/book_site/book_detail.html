@@ -17,8 +17,14 @@
 
         <form method="POST" action="{% url "shelf" %}">
             {% csrf_token %}
-            <input type="hidden" name="book_id" value="{{ book.id }}">
-            <button>Add to Your shelf</button>
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <button>
+                    {% if saved_in_shelf %}
+                    Remove from Your shelf
+                    {% else %}
+                    Add to Your shelf
+                    {% endif%}
+                </button>
         </form>
        
     </center>

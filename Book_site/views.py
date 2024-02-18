@@ -1,10 +1,12 @@
-from django.shortcuts import render
-from django.views.generic import DetailView, ListView
-from .models import Book
-from django.views import View
-from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.shortcuts import render
+
+from django.views.generic import ListView
+from django.views import View
+
+from .forms import BookForm
+from .models import Book
+from django.db.models import Q
 # Create your views here.
 
 
@@ -15,10 +17,23 @@ class MainPageView(ListView):
     context_object_name = "books"
 
 
-class BookDetailView(DetailView):
-    model = Book
-    template_name = "book_site/book_detail.html"
-    context_object_name = "book"
+class BookDetailView(View):
+    def is_stored_books(self, request, book_id):
+        stored_books = request.session.get("stored_books")
+        if stored_books is not None:
+            is_in_your_shelf = book_id in stored_books
+        else:
+            is_in_your_shelf = False
+        return is_in_your_shelf
+
+    def get(self, request, slug):
+        book = Book.objects.get(slug=slug)
+
+        context = {
+            "book": book,
+            "saved_in_shelf": self.is_stored_books(request, book.id)
+        }
+        return render(request, "book_site/book_detail.html", context)
 
 
 class SearchedView(View):
