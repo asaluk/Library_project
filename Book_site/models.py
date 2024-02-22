@@ -33,7 +33,7 @@ class Book(models.Model):
     slug = models.SlugField(default="")
     tome = models.IntegerField(default="", blank=True, null=True)
     series = models.ForeignKey(
-        Series, on_delete=models.CASCADE, blank=True, null=True, related_name="books")
+        Series, on_delete=models.CASCADE, blank=True, null=True, related_name="books", default="")
 
     def __str__(self):
         return f"{self.title} {self.author}"

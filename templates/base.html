@@ -15,7 +15,7 @@
 
     <div class="topnav">
         <a href="{% url "main-page" %}">Menu</a>
-        <a href="">Add your book</a>
+        <a href="{% url "add-book" %}">Add your book</a>
         <a href="{% url "shelf" %}">Your Shelf</a>
         <form method="POST" action="{% url "searched" %}">
             {% csrf_token %}

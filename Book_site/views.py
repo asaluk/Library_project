@@ -2,12 +2,36 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from django.views.generic import ListView
+from django.views.generic.base import TemplateView
 from django.views import View
 
-from .forms import BookForm
+from .forms import BookForm, AuthorForm, SeriesForm
 from .models import Book
 from django.db.models import Q
 # Create your views here.
+
+
+class AddBook(TemplateView):
+    template_name = "book_site/add_book.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["book_form"] = BookForm()
+        context["author_form"] = AuthorForm()
+        context["series_form"] = SeriesForm()
+        return context
+
+    def post(self, request):
+        book_form = BookForm(request.POST, request.FILES)
+        author_form = AuthorForm(request.POST)
+        series_form = SeriesForm(request.POST)
+
+        if book_form.is_valid() and author_form.is_valid() and series_form.is_valid():
+            book_form.save()
+            author_form.save()
+            series_form.save()
+            return HttpResponseRedirect("/")
+        
 
 
 class MainPageView(ListView):
