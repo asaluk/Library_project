@@ -18,10 +18,9 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class SeriesAdmin(admin.ModelAdmin):
-    list_display = ["series"]
+    list_display = ["series_name"]
 
 
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Series, SeriesAdmin)
-

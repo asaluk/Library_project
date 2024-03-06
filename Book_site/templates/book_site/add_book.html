@@ -10,9 +10,13 @@
         <center>
             {% csrf_token %}
             {{ book_form.as_p}}
-            {{ author_form.as_p }}
-            {{ series_form.as_p}}
             <button type="submit">Send</button>
         </center>
+        {% if book_form.errors %}
+        <ul class="errors"> {% for error in book_form.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+  {% endif %}
     </form>
 {% endblock %}
